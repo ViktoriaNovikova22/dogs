@@ -106,6 +106,7 @@
             this.Controls.Add(this.CollideButton);
             this.DoubleBuffered = true;
             this.Name = "RaceGame";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.OnePaint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Esc);

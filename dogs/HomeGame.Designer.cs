@@ -63,6 +63,7 @@
             this.Controls.Add(this.GoToRace);
             this.Controls.Add(this.MakeTeam);
             this.Name = "HomeGame";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Esc);
             this.ResumeLayout(false);

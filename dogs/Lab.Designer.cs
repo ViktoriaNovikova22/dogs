@@ -64,6 +64,7 @@
             this.DoubleBuffered = true;
             this.MaximizeBox = false;
             this.Name = "Lab";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MainLoad);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyPress);
