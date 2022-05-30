@@ -14,7 +14,7 @@ namespace dogs
     {
         LabClass lab = new LabClass();
         predStat pred;
-        int chopTree = 2;
+        int chopTree = 3;
         public Lab(float TimeRace, float predSpeed, float predx, float predy)
         {
             InitializeComponent();
