@@ -36,6 +36,7 @@
             this.TimeBox = new System.Windows.Forms.TextBox();
             this.ResultBox = new System.Windows.Forms.PictureBox();
             this.TryAgain = new System.Windows.Forms.Button();
+            this.timerForCollide = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ResultBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,12 +47,12 @@
             // CollideButton
             // 
             this.CollideButton.BackColor = System.Drawing.Color.SandyBrown;
-            this.CollideButton.Location = new System.Drawing.Point(292, 194);
+            this.CollideButton.Location = new System.Drawing.Point(304, 194);
             this.CollideButton.Name = "CollideButton";
             this.CollideButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.CollideButton.Size = new System.Drawing.Size(197, 55);
+            this.CollideButton.Size = new System.Drawing.Size(226, 76);
             this.CollideButton.TabIndex = 0;
-            this.CollideButton.Text = "Препятствие! Нажмите, чтобы продолжить!";
+            this.CollideButton.Text = "О, нет! Из-за столкновения Юнец сбежал! Надо его поймать!";
             this.CollideButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.CollideButton.UseVisualStyleBackColor = false;
             this.CollideButton.Visible = false;
@@ -72,7 +73,7 @@
             this.ResultBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ResultBox.BackgroundImage")));
             this.ResultBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ResultBox.InitialImage = null;
-            this.ResultBox.Location = new System.Drawing.Point(216, 98);
+            this.ResultBox.Location = new System.Drawing.Point(227, 98);
             this.ResultBox.Name = "ResultBox";
             this.ResultBox.Size = new System.Drawing.Size(379, 269);
             this.ResultBox.TabIndex = 2;
@@ -90,6 +91,10 @@
             this.TryAgain.Visible = false;
             this.TryAgain.Click += new System.EventHandler(this.TryAgain_Click);
             // 
+            // timerForCollide
+            // 
+            this.timerForCollide.Tick += new System.EventHandler(this.CollideTick);
+            // 
             // RaceGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -103,6 +108,8 @@
             this.Name = "RaceGame";
             this.Text = "Form1";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.OnePaint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Esc);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.key);
             ((System.ComponentModel.ISupportInitialize)(this.ResultBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -117,5 +124,6 @@
         private TextBox TimeBox;
         private PictureBox ResultBox;
         private Button TryAgain;
+        private System.Windows.Forms.Timer timerForCollide;
     }
 }

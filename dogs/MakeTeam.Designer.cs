@@ -47,11 +47,19 @@
             this.Exit = new System.Windows.Forms.Button();
             this.SpeedText = new System.Windows.Forms.TextBox();
             this.MakeTheBest = new System.Windows.Forms.Button();
+            this.LFBox = new System.Windows.Forms.PictureBox();
+            this.LSBox = new System.Windows.Forms.PictureBox();
+            this.RFBox = new System.Windows.Forms.PictureBox();
+            this.RSBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.teamBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leaderBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.strongDogBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sageBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.youngDogBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LFBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LSBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RFBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RSBox)).BeginInit();
             this.SuspendLayout();
             // 
             // teamBox
@@ -67,7 +75,7 @@
             // leftFirst
             // 
             this.leftFirst.BackColor = System.Drawing.Color.Blue;
-            this.leftFirst.Location = new System.Drawing.Point(405, 159);
+            this.leftFirst.Location = new System.Drawing.Point(394, 168);
             this.leftFirst.Name = "leftFirst";
             this.leftFirst.Size = new System.Drawing.Size(17, 13);
             this.leftFirst.TabIndex = 9;
@@ -121,7 +129,7 @@
             // rightFirst
             // 
             this.rightFirst.BackColor = System.Drawing.Color.Blue;
-            this.rightFirst.Location = new System.Drawing.Point(472, 139);
+            this.rightFirst.Location = new System.Drawing.Point(454, 147);
             this.rightFirst.Name = "rightFirst";
             this.rightFirst.Size = new System.Drawing.Size(17, 13);
             this.rightFirst.TabIndex = 14;
@@ -131,7 +139,7 @@
             // RightSecond
             // 
             this.RightSecond.BackColor = System.Drawing.Color.Blue;
-            this.RightSecond.Location = new System.Drawing.Point(572, 189);
+            this.RightSecond.Location = new System.Drawing.Point(545, 205);
             this.RightSecond.Name = "RightSecond";
             this.RightSecond.Size = new System.Drawing.Size(17, 13);
             this.RightSecond.TabIndex = 15;
@@ -141,7 +149,7 @@
             // leftSecond
             // 
             this.leftSecond.BackColor = System.Drawing.Color.Blue;
-            this.leftSecond.Location = new System.Drawing.Point(504, 215);
+            this.leftSecond.Location = new System.Drawing.Point(486, 225);
             this.leftSecond.Name = "leftSecond";
             this.leftSecond.Size = new System.Drawing.Size(17, 13);
             this.leftSecond.TabIndex = 16;
@@ -243,6 +251,54 @@
             this.MakeTheBest.UseVisualStyleBackColor = false;
             this.MakeTheBest.Click += new System.EventHandler(this.MakeTheBest_Click);
             // 
+            // LFBox
+            // 
+            this.LFBox.BackColor = System.Drawing.Color.Transparent;
+            this.LFBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LFBox.BackgroundImage")));
+            this.LFBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.LFBox.Location = new System.Drawing.Point(363, 159);
+            this.LFBox.Name = "LFBox";
+            this.LFBox.Size = new System.Drawing.Size(76, 84);
+            this.LFBox.TabIndex = 26;
+            this.LFBox.TabStop = false;
+            this.LFBox.Visible = false;
+            // 
+            // LSBox
+            // 
+            this.LSBox.BackColor = System.Drawing.Color.Transparent;
+            this.LSBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LSBox.BackgroundImage")));
+            this.LSBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.LSBox.Location = new System.Drawing.Point(454, 205);
+            this.LSBox.Name = "LSBox";
+            this.LSBox.Size = new System.Drawing.Size(75, 93);
+            this.LSBox.TabIndex = 27;
+            this.LSBox.TabStop = false;
+            this.LSBox.Visible = false;
+            // 
+            // RFBox
+            // 
+            this.RFBox.BackColor = System.Drawing.Color.Transparent;
+            this.RFBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("RFBox.BackgroundImage")));
+            this.RFBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.RFBox.Location = new System.Drawing.Point(445, 115);
+            this.RFBox.Name = "RFBox";
+            this.RFBox.Size = new System.Drawing.Size(76, 84);
+            this.RFBox.TabIndex = 28;
+            this.RFBox.TabStop = false;
+            this.RFBox.Visible = false;
+            // 
+            // RSBox
+            // 
+            this.RSBox.BackColor = System.Drawing.Color.Transparent;
+            this.RSBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("RSBox.BackgroundImage")));
+            this.RSBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.RSBox.Location = new System.Drawing.Point(527, 168);
+            this.RSBox.Name = "RSBox";
+            this.RSBox.Size = new System.Drawing.Size(76, 96);
+            this.RSBox.TabIndex = 29;
+            this.RSBox.TabStop = false;
+            this.RSBox.Visible = false;
+            // 
             // MakeTeam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -250,6 +306,10 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.RSBox);
+            this.Controls.Add(this.RFBox);
+            this.Controls.Add(this.LSBox);
+            this.Controls.Add(this.LFBox);
             this.Controls.Add(this.MakeTheBest);
             this.Controls.Add(this.SpeedText);
             this.Controls.Add(this.Exit);
@@ -270,11 +330,16 @@
             this.Controls.Add(this.teamBox);
             this.Name = "MakeTeam";
             this.Text = "Form1";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Esc);
             ((System.ComponentModel.ISupportInitialize)(this.teamBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leaderBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.strongDogBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sageBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.youngDogBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LFBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LSBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RFBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RSBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,5 +365,9 @@
         private Button Exit;
         private TextBox SpeedText;
         private Button MakeTheBest;
+        private PictureBox LFBox;
+        private PictureBox LSBox;
+        private PictureBox RFBox;
+        private PictureBox RSBox;
     }
 }

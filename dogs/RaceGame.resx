@@ -2613,4 +2613,7 @@
         ZJFUn/TSvG9I1+68N6vHcwSfNJWx/wALh1Sb/nnR7MPaHqGX/wCedFeVz/FzXPM/10f5UUezND//2Q==
 </value>
   </data>
+  <metadata name="timerForCollide.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>274, 17</value>
+  </metadata>
 </root>

@@ -20,21 +20,22 @@ namespace dogs
         Trees tree4;
         Stump[] stumps = new Stump[6];
         List<Let> LetList = new List<Let>();
-        public RaceGame(float speed)
+        public RaceGame(float speed, float TimeRace, float x, float y)
         {
             InitializeComponent();
-            Init(speed);
+            TimeForRace = TimeRace;
+            Init(speed, x, y);
             Invalidate();
         }
 
-        public void Init(float speed)
+        public void Init(float speed, float x, float y)
         {
-            team = new DogTeam(350, 375);
+            team = new DogTeam(x, y);
             team.speed = speed;
             tree1 = new Trees(100, 0);
             tree2 = new Trees(700, 125);
             tree3 = new Trees(400, 250);
-            tree4 = new Trees(250, 375);
+            tree4 = new Trees(250, 325);
             Random rnd = new Random();
             for (int i = 0; i < 6; i++)
                 stumps[i] = new Stump(i*50, rnd.Next(10, 400));
@@ -48,125 +49,48 @@ namespace dogs
             TimerLet.Tick += new EventHandler(updateLet);
             TimerTeam.Interval = 1;
             TimerTeam.Tick += new EventHandler(updateTeam);
+            timerForCollide.Interval = 1;
+            timerForCollide.Tick += new EventHandler(CollideTick);
             TimerLet.Start();
             TimerTeam.Start();
+            timerForCollide.Start();
         }
 
-        private void MakeList()
-        {
-            LetList.Add(tree1);
-            LetList.Add(tree2);
-            LetList.Add(tree3);
-            LetList.Add(tree4);
-            for (int i = 0; i < 6; i++)
-                LetList.Add(stumps[i]);
-        }
 
         private void updateTeam(object sender, EventArgs e)
         {
-            if (IsCollide())
-                ThisIsCollide();
-            MoveTeam();
+            TimeForRace = team.MoveTeam(team, TimeForRace);
             TimeBox.Text = "Время в пути: " + TimeForRace;
+            this.KeyPress += new KeyPressEventHandler(key);
+            if (team.y <= 70)
+                    Results();
             Invalidate();
-            if (team.y <= 40)
-                Results();
-        }
-
-        private void ThisIsCollide()
-        {
-            TimeForRace += 1;
-            TimerTeam.Stop();
-            TimerLet.Stop();
-            CollideButton.Visible = true;
         }
 
         private void updateLet(object sender, EventArgs e)
         {
             for (int i = 0; i < LetList.Count; i++)
             {
-                LetList[i] = MoveLet(LetList[i]);
+                LetList[i] = LetList[i].MoveLet(LetList[i], team, LetList);
             }
             Invalidate();
         }
 
-        private void MoveTeam()
-        {
-            this.KeyDown += new KeyEventHandler(keyboard);
-            TimeForRace += team.speed * 0.01F;
-            team.y -= team.speed * 0.01F;
-        }
-
-        private Let MoveLet(Let let)
-        {
-            let.y += team.speed * 0.05F;
-            return CreateNewLet(let);
-        }
-
-        private Let CreateNewLet(Let let)
-        {
-            if (let.y > 400)
-            {
-                Random rnd = new Random();
-                float x = rnd.Next(10, 700);
-                if (ThereIsNoOblect(x, -100))
-                {
-                    let.x = x;
-                    let.y = -100;
-                }
-                else
-                {
-                    x += 100;
-                    if (ThereIsNoOblect(x, -100))
-                    {
-                        let.x = x;
-                        let.y = -100;
-                    }
-                }
-            }
-            return let;
-        }
-
-        private void keyboard(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode.ToString())
-            {
-                case "A":
-                    team.x -= 0.01f;
-                    break;
-                case "D":
-                    team.x += 0.01f;
-                    break;
-            }
-        }
-
         private bool IsCollide()
         {
-            for (int i = 0; i < LetList.Count; i++)
-                if (Collide(LetList[i]))
+            foreach (var let in LetList)
+                if (let.Collide(let, team))
                     return true;
             return false;
         }
 
-        private bool Collide(Let let)
-        {
-            PointF delta = new PointF();
-            delta.X = team.x - let.x;
-            delta.Y = team.y - let.y;
-            if (Math.Abs(delta.X) <= team.size / 2 + let.sizeX / 2)
-                if (Math.Abs(delta.Y) <= team.size / 2 + let.sizeY / 2)
-                {
-                    return true;
-                }
-            return false;
-        }
 
         private void OnePaint(object sender, PaintEventArgs e)
         {
             Graphics graphics = e.Graphics;
-            graphics.DrawImage(team.TeamImg, team.x, team.y, team.size, team.size);
-            for (int i = 0; i < LetList.Count; i++)
-                DrawLet(LetList[i], e);
+            graphics.DrawImage(team.TeamImg, team.x, team.y, team.sizeX, team.sizeY);
+            foreach (var let in LetList)
+                DrawLet(let, e);
         }
 
         private void DrawLet(Let let, PaintEventArgs e)
@@ -182,17 +106,7 @@ namespace dogs
                 LetList[i].y -= 150;
             }
             CollideButton.Visible = false;
-            TimeGo();
-        }
-
-        private bool ThereIsNoOblect(float x, float y)
-        {
-            if ((x >= team.x - team.size / 2 && x <= team.x + team.size / 2) && (y >= team.y - team.size / 2 && y <= team.y + team.size / 2))
-                return false;
-            for (int i = 0; i < LetList.Count; i++)
-                if ((x >= LetList[i].x - LetList[i].sizeX / 2 && x <= LetList[i].x + LetList[i].sizeX / 2) && (y >= LetList[i].y - LetList[i].sizeY / 2 && y <= LetList[i].x + LetList[i].sizeY / 2))
-                    return false;
-            return true;
+            Labyrinth();
         }
 
         private void Results()
@@ -210,6 +124,55 @@ namespace dogs
             MakeTeam makeTeam = new MakeTeam();
             this.Hide();
             makeTeam.Show();
+        }
+
+        private void key(object sender, KeyPressEventArgs e)
+        {
+            team.Move(e);
+        } 
+        private void MakeList()
+        {
+            LetList.Add(tree1);
+            LetList.Add(tree2);
+            LetList.Add(tree3);
+            LetList.Add(tree4);
+            for (int i = 0; i < 6; i++)
+                LetList.Add(stumps[i]);
+        }
+
+        private void CollideTick(object sender, EventArgs e)
+        {
+            if (IsCollide())
+                ThisIsCollide();
+        }
+
+        private void ThisIsCollide()
+        {
+            TimeForRace += 10;
+            TimerTeam.Stop();
+            TimerLet.Stop();
+            timerForCollide.Stop();
+            CollideButton.Visible = true;
+        }
+
+        private void Labyrinth()
+        {
+            TimerTeam.Stop();
+            TimerLet.Stop();
+            timerForCollide.Stop();
+            this.Hide();
+            Lab lab = new Lab(TimeForRace, team.speed, team.x, team.y);
+            lab.Show();
+        }
+
+        private void Esc(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    Application.Exit();
+                    break;
+            }
         }
     }
 }

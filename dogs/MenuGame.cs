@@ -43,5 +43,15 @@ namespace dogs
         {
             Application.Exit();
         }
+
+        private void Esc(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    Application.Exit();
+                    break;
+            }
+        }
     }
 }

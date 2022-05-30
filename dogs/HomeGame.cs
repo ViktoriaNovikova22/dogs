@@ -45,9 +45,19 @@ namespace dogs
 
             if (create == false)
             {
-                RaceGame raceGame = new RaceGame(1);
+                RaceGame raceGame = new RaceGame(1, 0, 350, 375);
                 this.Hide();
                 raceGame.Show();
+            }
+        }
+
+        private void Esc(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    Application.Exit();
+                    break;
             }
         }
     }

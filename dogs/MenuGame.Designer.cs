@@ -64,6 +64,7 @@
             this.Controls.Add(this.NewGame);
             this.Name = "MenuGame";
             this.Text = "Form1";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Esc);
             this.ResumeLayout(false);
 
         }

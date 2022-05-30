@@ -35,7 +35,7 @@
             // 
             // MakeTeam
             // 
-            this.MakeTeam.Location = new System.Drawing.Point(579, 409);
+            this.MakeTeam.Location = new System.Drawing.Point(57, 331);
             this.MakeTeam.Name = "MakeTeam";
             this.MakeTeam.Size = new System.Drawing.Size(94, 29);
             this.MakeTeam.TabIndex = 0;
@@ -45,7 +45,7 @@
             // 
             // GoToRace
             // 
-            this.GoToRace.Location = new System.Drawing.Point(694, 409);
+            this.GoToRace.Location = new System.Drawing.Point(57, 376);
             this.GoToRace.Name = "GoToRace";
             this.GoToRace.Size = new System.Drawing.Size(94, 29);
             this.GoToRace.TabIndex = 1;
@@ -64,6 +64,7 @@
             this.Controls.Add(this.MakeTeam);
             this.Name = "HomeGame";
             this.Text = "Form1";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Esc);
             this.ResumeLayout(false);
 
         }
