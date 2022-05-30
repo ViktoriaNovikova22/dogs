@@ -34,6 +34,7 @@ namespace dogs
 
         public void Init()
         {
+            this.KeyDown += new KeyEventHandler(Esc);
             MakeList();
         }
 

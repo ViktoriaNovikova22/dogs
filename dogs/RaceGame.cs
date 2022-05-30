@@ -39,6 +39,7 @@ namespace dogs
             Random rnd = new Random();
             for (int i = 0; i < 6; i++)
                 stumps[i] = new Stump(i*50, rnd.Next(10, 400));
+            this.KeyDown += new KeyEventHandler(Esc);
             MakeList();
             TimeGo();
         }
@@ -113,7 +114,7 @@ namespace dogs
         {
             TimerTeam.Stop();
             TimerLet.Stop();
-            if (TimeForRace <= 360)
+            if (TimeForRace <= 60)
                 ResultBox.BackgroundImage = Image.FromFile("C:\\Users\\UserHome\\Desktop\\омгврс\\image\\win.jpg");
             ResultBox.Visible = true;
             TryAgain.Visible = true;

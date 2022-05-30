@@ -5,6 +5,7 @@ namespace dogs
         public HomeGame()
         {
             InitializeComponent();
+            this.KeyDown += new KeyEventHandler(Esc);
         }
 
         private void MakeTeam_Click(object sender, EventArgs e)

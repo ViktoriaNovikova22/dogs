@@ -15,6 +15,7 @@ namespace dogs
         public MenuGame()
         {
             InitializeComponent();
+            this.KeyDown += new KeyEventHandler(Esc);
         }
 
         private void button1_Click(object sender, EventArgs e)

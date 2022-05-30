@@ -19,6 +19,7 @@ namespace dogs
         {
             InitializeComponent();
             pred = new predStat(TimeRace, predSpeed, predx, predy);
+            this.KeyDown += new KeyEventHandler(Esc);
             lab.CreateMap();
         }
 
@@ -189,6 +190,16 @@ namespace dogs
             RaceGame race = new RaceGame(pred.speed, pred.timeRace + 10, pred.x, pred.y);
             this.Hide();
             race.Show();
+        }
+
+        private void Esc(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    Application.Exit();
+                    break;
+            }
         }
 
         internal class predStat
